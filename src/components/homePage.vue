@@ -1,0 +1,369 @@
+<template>
+  <div class="banner">
+    <img src="../assets/avatar.jpg"/>
+    <div class="description">
+      <h2>Rohan Kumar</h2>
+      <p> Hi there! I am a full-stack web developer. I have experience with multiple front-end and back-end
+        frameworks</p>
+    </div>
+  </div>
+  <div class="project">
+    <h2><span><img src="../assets/project.svg" width="50"/></span> My Projects </h2>
+    <div class="repos">
+      <div class="repository" v-for="item in repos" v-bind:key="item.id">
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+        <a v-bind:href="item.svn_url"><div class="repo-button">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Visit Repository
+        </div></a>
+      </div>
+
+    </div>
+  </div>
+  <div class="socials">
+    <h2><span><img src="../assets/social-media.svg" width="50"/></span>My Socials</h2>
+    <div class="wrapper">
+      <a href="https://www.facebook.com/rohank05">
+        <div class="icon facebook">
+          <div class="tooltip">Facebook</div>
+          <span><i class="fab fa-facebook-f"></i></span>
+        </div>
+      </a>
+
+      <a href="https://twitter.com/rohank05">
+        <div class="icon twitter">
+          <div class="tooltip">Twitter</div>
+          <span><i class="fab fa-twitter"></i></span>
+        </div>
+      </a>
+
+      <a href="https://www.instagram.com/the_anime_head/">
+        <div class="icon instagram">
+          <div class="tooltip">Instagram</div>
+          <span><i class="fab fa-instagram"></i></span>
+        </div>
+      </a>
+
+      <a href="https://github.com/rohank05">
+        <div class="icon github">
+          <div class="tooltip">Github</div>
+          <span><i class="fab fa-github"></i></span>
+        </div>
+      </a>
+
+
+    </div>
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      repos: null
+    }
+  },
+  mounted() {
+    axios.get('https://api.github.com/users/rohank05/repos').then(response => (this.repos = response.data))
+  },
+
+  name: "homePage"
+}
+</script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+a {
+  color: inherit;
+}
+.banner img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid whitesmoke;
+
+}
+
+.banner {
+  display: flex;
+  justify-content: center;
+  margin-top: 200px;
+  align-items: center;
+}
+
+.description {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.description h2 {
+  color: #EEEEEE;
+  margin-bottom: 2px;
+}
+
+.description p {
+  color: #BBBBBB;
+  width: 500px;
+  justify-content: center;
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  width: 900px;
+  margin: auto auto;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.project h2 {
+  color: white;
+  text-align: center;
+  margin: auto auto;
+}
+
+.repos {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.repository {
+  background-color: #414141;
+  border-radius: 5px;
+  display: inline-block;
+  height: 300px;
+  margin: 1rem;
+  position: relative;
+  width: 300px;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+
+}
+
+.repository h3 {
+  color: white;
+  margin-top: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.repository p {
+  color: whitesmoke;
+  text-align: justify;
+  margin: 30px 10px 10px;
+  font-family: 'Montserrat', sans-serif;
+  height: 95px;
+}
+
+.repo-button {
+  position: relative;
+  display: inline-block;
+  padding: 10px 31px;
+  border-radius: 4px;
+  color: #03e9f4;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  margin-top: 35px;
+  font-family: "Roboto", sans-serif;
+  filter: hue-rotate(0deg);
+  border: 2px solid #d2bdff;
+  transition: all 0.1s linear;
+}
+.repo-button:hover {
+  border: 1px solid transparent;
+}
+.repo-button:hover span {
+  position: absolute;
+  display: block;
+}
+.repo-button:hover span:nth-child(1) {
+  filter: hue-rotate(0deg);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #3a86ff);
+  animation: animate1 1s linear infinite;
+}
+@keyframes animate1 {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 100%;
+  }
+}
+.repo-button:hover span:nth-child(2) {
+  filter: hue-rotate(60deg);
+  top: -100%;
+  right: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #3a86ff);
+  animation: animate2 1s linear infinite;
+  animation-delay: 0.25s;
+}
+@keyframes animate2 {
+  0% {
+    top: -100%;
+  }
+  50%, 100% {
+    top: 100%;
+  }
+}
+.repo-button:hover span:nth-child(3) {
+  filter: hue-rotate(120deg);
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background: linear-gradient(270deg, transparent, #3a86ff);
+  animation: animate3 1s linear infinite;
+  animation-delay: 0.5s;
+}
+@keyframes animate3 {
+  0% {
+    right: -100%;
+    height: 3px;
+  }
+  50%, 100% {
+    height: 2px;
+    right: 100%;
+  }
+}
+.repo-button:hover span:nth-child(4) {
+  filter: hue-rotate(300deg);
+  bottom: -100%;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #3a86ff);
+  animation: animate4 1s linear infinite;
+  animation-delay: 0.75s;
+}
+@keyframes animate4 {
+  0% {
+    bottom: -100%;
+  }
+  50%, 100% {
+    bottom: 100%;
+  }
+}
+
+.socials{
+  display: flex;
+  flex-direction: column;
+  width: 900px;
+  margin: auto auto;
+  margin-top: 100px;
+  text-align: center;
+}
+.socials h2 {
+  color: white;
+  text-align: center;
+  margin: auto auto;
+}
+.wrapper {
+  display: inline-flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.wrapper .icon {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 50%;
+  padding: 5px;
+  margin: 10px;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background-color: #ffffff;
+  color: #ffffff;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background-color: #ffffff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .tooltip {
+  top: -45px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.wrapper .icon:hover span,
+.wrapper .icon:hover .tooltip {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper .facebook:hover,
+.wrapper .facebook:hover .tooltip,
+.wrapper .facebook:hover .tooltip::before {
+  background-color: #3b5999;
+  color: #ffffff;
+}
+
+.wrapper .twitter:hover,
+.wrapper .twitter:hover .tooltip,
+.wrapper .twitter:hover .tooltip::before {
+  background-color: #46c1f6;
+  color: #ffffff;
+}
+
+.wrapper .instagram:hover,
+.wrapper .instagram:hover .tooltip,
+.wrapper .instagram:hover .tooltip::before {
+  background-color: #e1306c;
+  color: #ffffff;
+}
+
+.wrapper .github:hover,
+.wrapper .github:hover .tooltip,
+.wrapper .github:hover .tooltip::before {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.wrapper .youtube:hover,
+.wrapper .youtube:hover .tooltip,
+.wrapper .youtube:hover .tooltip::before {
+  background-color: #de463b;
+  color: #ffffff;
+}
+
+</style>
