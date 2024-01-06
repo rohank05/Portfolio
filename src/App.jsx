@@ -18,8 +18,8 @@ function App() {
     <div className="wrapper">
       <a href="https://www.facebook.com/rohank05">
         <div className="icon facebook">
-          <div className="tooltip">Facebook</div>
-          <span><i className="fab fa-facebook-f"></i></span>
+          <div className="tooltip">LinkedIn</div>
+          <span><i className="fab fa-linkedin"></i></span>
         </div>
       </a>
 

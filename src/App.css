@@ -285,3 +285,18 @@ a {
   background-color: #de463b;
   color: #ffffff;
 }
+
+
+@media screen and (max-width: 600px) {
+  .banner {
+    flex-direction: column; /* Stack elements in a column on smaller screens */
+    align-items: center;
+    justify-content: center;
+  }
+
+  .description {
+    margin-left: 0; /* Reset margin for better mobile layout */
+    text-align: center; /* Center text in mobile view */
+    justify-content: center;
+  }
+}
