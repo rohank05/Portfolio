@@ -51,6 +51,13 @@ const Header = () => {
                         has led me to work with a diverse set of languages,
                         including JavaScript, Java, C#, Python, and Go. 🗣
                     </Text>
+                    <Button
+                        mt={8}
+                        color="cyan.400"
+                        onClick={() => window.open("https://therohankumar.com")}
+                    >
+                        Hire Me
+                    </Button>
                 </Box>
                 <Image
                     alignSelf="center"
