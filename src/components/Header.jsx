@@ -11,16 +11,11 @@ import {
 } from "@chakra-ui/react";
 
 import avatar from "../assets/avatar.jpg";
-import { useEffect } from "react";
 
 const Header = () => {
     const { colorMode } = useColorMode();
     const isDark = colorMode === "dark";
     let [isNotSmallerScreen] = useMediaQuery("(min-width: 800px)");
-    useEffect(() => {
-        console.log(isNotSmallerScreen);
-    }, [isNotSmallerScreen]);
-
     return (
         <Stack>
             <Circle
