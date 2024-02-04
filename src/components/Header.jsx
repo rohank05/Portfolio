@@ -21,7 +21,7 @@ const Header = () => {
             <Circle
                 position="absolute"
                 bg="blue.100"
-                opacity="0.1"
+                opacity={isDark ? 0.1 : 0.6}
                 w="300px"
                 h="300px"
                 alignSelf="flex-end"
@@ -51,13 +51,6 @@ const Header = () => {
                         has led me to work with a diverse set of languages,
                         including JavaScript, Java, C#, Python, and Go. 🗣
                     </Text>
-                    <Button
-                        mt={8}
-                        colorScheme="blue"
-                        onClick={() => window.open("https://therohankumar.com")}
-                    >
-                        Hire Me
-                    </Button>
                 </Box>
                 <Image
                     alignSelf="center"
