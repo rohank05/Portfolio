@@ -1,0 +1,16 @@
+{
+    "socials": [
+        { "name": "GitHub", "url": "", "username": "@rohank05" },
+        { "name": "LinkedIn", "url": "", "username": "@rohank05" },
+        { "name": "Twitter", "url": "", "username": "@rohank05" }
+    ],
+    "about": "I am a passionate software developer with expertise across multiple platforms, currently honing my skills at Spraxa Solutions Pvt. Ltd. My journey in the tech world has led me to work with a diverse set of languages, including JavaScript, Java, C#, Python, and Go. 💻\nWith a knack for problem-solving and a drive for continuous learning, I thrive on tackling complex challenges and delivering robust solutions. My experience spans various projects, allowing me to adapt quickly to new technologies and environments.\nBeyond the world of code, I'm an avid enthusiast of anime, movies, and games. 🎮🍿 This blend of technical prowess and creative interests fuels my innovative approach to software development, enabling me to bring unique perspectives to every project.\nWhether I'm crafting efficient algorithms or exploring new worlds in my favorite games, I'm always eager to push boundaries and explore new possibilities in both my professional and personal pursuits.",
+    "github": "https://github.com/rohank05",
+    "experiences": [
+        {
+            "title": "Software Developer at Spraxa Solutions Pvt. Ltd.",
+            "period": "March 2023 - Present",
+            "description": "Developed and maintained multiple client websites, focusing on responsive design and performance optimization."
+        }
+    ]
+}

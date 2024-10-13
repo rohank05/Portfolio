@@ -1,90 +1,51 @@
-import {
-    Flex,
-    Heading,
-    IconButton,
-    Spacer,
-    VStack,
-    useColorMode,
-} from "@chakra-ui/react";
-import {
-    FaInstagram,
-    FaLinkedin,
-    FaGithub,
-    FaSun,
-    FaMoon,
-} from "react-icons/fa";
-import Header from "./components/Header";
-import Social from "./components/Social";
+import { useState, useEffect } from "react";
 import Profile from "./components/Profile";
-import useSound from "use-sound";
-import lightswitchAudio from "./assets/lightswitch.mp3";
+import About from "./components/About";
+import Projects from "./components/Project";
+import Experience from "./components/Experience";
 
 function App() {
-    const { colorMode, toggleColorMode } = useColorMode();
-    const isDark = colorMode === "dark";
-    const [play] = useSound(lightswitchAudio, {
-        volume: 0.05,
-        sprite: {
-            on: [0, 300],
-            off: [500, 300],
-        },
-    });
-    const handleColorSwitch = () => {
-        isDark ? play({ id: "on" }) : play({ id: "off" });
-        toggleColorMode();
-    };
+    const [projects, setProjects] = useState([]);
+
+    useEffect(() => {
+        fetch("https://api.github.com/users/rohank05/repos")
+            .then((response) => response.json())
+            .then((data) => {
+                const sortedProjects = data
+                    .sort((a, b) => b.stargazers_count - a.stargazers_count)
+                    .slice(0, 5)
+                    .map((repo) => ({
+                        id: repo.id,
+                        name: repo.name,
+                        description: repo.description,
+                        language: repo.language,
+                        stars: repo.stargazers_count,
+                        url: repo.html_url,
+                    }));
+                setProjects(sortedProjects);
+            })
+            .catch((error) =>
+                console.error("Error fetching GitHub projects:", error)
+            );
+    }, []);
+
     return (
-        <VStack p={5}>
-            <Flex w={"100%"}>
-                <Heading
-                    ml={8}
-                    size={"md"}
-                    fontWeight={"bold"}
-                    color={"cyan.400"}
-                >
-                    TRK
-                </Heading>
-                <Spacer></Spacer>
-                <IconButton
-                    icon={<FaLinkedin />}
-                    isRound="true"
-                    onClick={() =>
-                        window.open(
-                            "https://www.linkedin.com/in/rohank05/",
-                            "_blank"
-                        )
-                    }
-                ></IconButton>
-                <IconButton
-                    ml={2}
-                    icon={<FaInstagram />}
-                    isRound="true"
-                    onClick={() =>
-                        window.open(
-                            "https://www.instagram.com/rohank1251/",
-                            "_blank"
-                        )
-                    }
-                ></IconButton>
-                <IconButton
-                    ml={2}
-                    icon={<FaGithub />}
-                    isRound="true"
-                    onClick={() =>
-                        window.open("https://github.com/rohank05", "_blank")
-                    }
-                ></IconButton>
-                <IconButton
-                    ml={8}
-                    icon={isDark ? <FaSun /> : <FaMoon />}
-                    isRound="true"
-                    onClick={handleColorSwitch}
-                ></IconButton>
-            </Flex>
-            <Header></Header>
-            <Social></Social>
-            <Profile></Profile>
-        </VStack>
+        <div className="bg-darker text-gray-100 font-sans min-h-screen">
+            <div className="container mx-auto px-4 py-8">
+                <div className="flex flex-col lg:flex-row gap-8">
+                    <div className="lg:w-1/4">
+                        <Profile />
+                    </div>
+                    <div className="lg:w-3/4">
+                        <main className="bg-dark rounded-lg p-6 shadow-lg">
+                            <About />
+                            <Projects projects={projects} />
+                            <Experience />
+                        </main>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }
 
